@@ -10,14 +10,14 @@ if ('GET' === $_SERVER['REQUEST_METHOD']) {
     }
 }
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
-    if (isset($_POST['username']) && isset($_POST['password'])) {
-        $username = $_POST['username'];
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+        $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $user = User::loadUserByUsername($conn, $username);
+        $user = User::loadUserByEmail($conn, $email);
 
-        if (!$user) {
-            echo '<p>Zły login lub hasło</p>';
+        if (!$email) {
+            echo '<p>Zły e-mail lub hasło</p>';
             exit;
         }
 
@@ -25,7 +25,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
             $_SESSION['user'] = $user->getId();
             header("Location: ../index.php");
         } else {
-            echo '<p>Zły login lub hasło</p>';
+            echo '<p>Zły e-mail lub hasło</p>';
             exit;
         }
     }
@@ -44,7 +44,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     <form method="POST" action="">
         <p>
             <label>
-                Login: <input name="username" type="text">
+                E-mail: <input name="email" type="email">
             </label>
         </p>
         <p>
