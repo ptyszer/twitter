@@ -59,9 +59,9 @@ class Tweet
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             $loadedTweet = new Tweet();
             $loadedTweet->id = $row['id'];
-            $loadedTweet->userId = $row['userId'];
+            $loadedTweet->userId = $row['user_id'];
             $loadedTweet->text = $row['text'];
-            $loadedTweet->creationDate = $row['creationDate'];
+            $loadedTweet->creationDate = $row['creation_date'];
             return $loadedTweet;
         }
         return null;
@@ -75,9 +75,9 @@ class Tweet
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             $loadedTweet = new Tweet();
             $loadedTweet->id = $row['id'];
-            $loadedTweet->userId = $row['userId'];
+            $loadedTweet->userId = $row['user_id'];
             $loadedTweet->text = $row['text'];
-            $loadedTweet->creationDate = $row['creationDate'];
+            $loadedTweet->creationDate = $row['creation_date'];
             return $loadedTweet;
         }
         return null;
@@ -86,15 +86,15 @@ class Tweet
     static public function loadAllTweets(PDO $conn)
     {
         $ret = [];
-        $sql = "SELECT * FROM Tweets";
+        $sql = "SELECT * FROM Tweets ORDER BY creation_date DESC";
         $result = $conn->query($sql);
         if ($result !== false && $result->rowCount() > 0) {
             foreach ($result as $row) {
                 $loadedTweet = new Tweet();
                 $loadedTweet->id = $row['id'];
-                $loadedTweet->userId = $row['userId'];
+                $loadedTweet->userId = $row['user_id'];
                 $loadedTweet->text = $row['text'];
-                $loadedTweet->creationDate = $row['creationDate'];
+                $loadedTweet->creationDate = $row['creation_date'];
                 $ret[] = $loadedTweet;
             }
         }
@@ -105,9 +105,9 @@ class Tweet
     {
         if ($this->id == -1) {
 
-            $sql = 'INSERT INTO Tweets(user_id, text, creationDate) VALUES(:user_id, :text, :creationDate)';
+            $sql = 'INSERT INTO Tweets(user_id, text, creation_date) VALUES(:user_id, :text, :creation_date)';
             $stmt = $conn->prepare($sql);
-            $result = $stmt->execute(['user_id' => $this->userId, 'text' => $this->text, 'creationDate' => $this->creationDate]);
+            $result = $stmt->execute(['user_id' => $this->userId, 'text' => $this->text, 'creation_date' => $this->creationDate]);
             if ($result !== false) {
                 $this->id = $conn->lastInsertId();
                 return true;
