@@ -1,0 +1,20 @@
+.container {
+    background: lightgray;
+}
+
+.content {
+    width: 60%;
+    margin: auto;
+    background: white;
+
+}
+
+.tweet {
+    border-bottom: dashed lightgray;
+    padding: 10px 15px;
+}
+
+.tweet-form {
+    background: lightblue;
+    padding: 10px 15px;
+}
