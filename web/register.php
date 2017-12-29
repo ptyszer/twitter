@@ -10,6 +10,15 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
+        $username = ctype_space($username) || empty($username) ? null : trim($username);
+        $email = ctype_space($email) || empty($email) ? null : trim($email);
+        $password = ctype_space($password) || empty($password) ? null : trim($password);
+
+        if (!$username || !$email || !$password) {
+            echo '<p>Błędne dane</p>';
+            exit;
+        }
+
         $stmt = $conn->prepare('SELECT * FROM Users WHERE email=:email');
         $result = $stmt->execute(['email' => $email]);
         if ($result === true && $stmt->rowCount() > 0) {

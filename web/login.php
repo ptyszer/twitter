@@ -5,7 +5,7 @@ require_once '../src/User.php';
 
 session_start();
 if ('GET' === $_SERVER['REQUEST_METHOD']) {
-    if(!empty($_GET) and $_GET['action']=='logout'){
+    if (!empty($_GET) and $_GET['action'] == 'logout') {
         unset($_SESSION['user']);
     }
 }
@@ -16,7 +16,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 
         $user = User::loadUserByEmail($conn, $email);
 
-        if (!$email) {
+        if (!$user) {
             echo '<p>Zły e-mail lub hasło</p>';
             exit;
         }
