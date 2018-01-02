@@ -69,16 +69,19 @@ class Tweet
 
     static public function loadAllTweetsByUserId(PDO $conn, $userId)
     {
-        $stmt = $conn->prepare('SELECT * FROM Tweets WHERE user_id=:user_id');
+        $ret = [];
+        $stmt = $conn->prepare('SELECT * FROM Tweets WHERE user_id=:user_id ORDER BY creation_date DESC');
         $result = $stmt->execute(['user_id' => $userId]);
-        if ($result === true && $stmt->rowCount() > 0) {
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            $loadedTweet = new Tweet();
-            $loadedTweet->id = $row['id'];
-            $loadedTweet->userId = $row['user_id'];
-            $loadedTweet->text = $row['text'];
-            $loadedTweet->creationDate = $row['creation_date'];
-            return $loadedTweet;
+        if ($result !== false && $stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $loadedTweet = new Tweet();
+                $loadedTweet->id = $row['id'];
+                $loadedTweet->userId = $row['user_id'];
+                $loadedTweet->text = $row['text'];
+                $loadedTweet->creationDate = $row['creation_date'];
+                $ret[] = $loadedTweet;
+            }
+            return $ret;
         }
         return null;
     }
@@ -97,8 +100,9 @@ class Tweet
                 $loadedTweet->creationDate = $row['creation_date'];
                 $ret[] = $loadedTweet;
             }
+            return $ret;
         }
-        return $ret;
+        return null;
     }
 
     public function saveToDB(PDO $conn)
