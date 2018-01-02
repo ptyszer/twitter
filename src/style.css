@@ -1,20 +1,52 @@
+body{
+    width: 100%;
+    padding: 0;
+}
 .container {
     background: lightgray;
+    width: 100%;
 }
 
 .content {
     width: 60%;
     margin: auto;
     background: white;
+    min-height: 600px;
 
 }
 
+.user {
+    font-weight: bold;
+    font-size: 1.8em;
+    padding: 10px 15px;
+}
+
 .tweet {
-    border-bottom: dashed lightgray;
+    border-bottom: 1px solid lightgray;
     padding: 10px 15px;
 }
 
 .tweet-form {
     background: lightblue;
     padding: 10px 15px;
+}
+
+a.tweet-link {
+    color: #000000;
+    text-decoration: none;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+.top-bar {
+    background: white;
+    border-bottom: 2px solid blue;
+}
+
+.top-div {
+    float: left;
+    padding: 15px;
 }
