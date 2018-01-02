@@ -13,17 +13,18 @@ $userName = $loggedInUser->getUsername();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $userId = $_SESSION['user'];
-    $text = $_POST['text'];
-    $creationDate = date('Y-m-d H:i:s', time());
+    if (!empty($_POST['text']) && !ctype_space($_POST['text'])) {
+        $userId = $_SESSION['user'];
+        $text = $_POST['text'];
+        $creationDate = date('Y-m-d H:i:s', time());
 
-    $tweet = new Tweet();
+        $tweet = new Tweet();
 
-    $tweet->setUserId($userId);
-    $tweet->setText($text);
-    $tweet->setCreationDate($creationDate);
-    $tweet->saveToDB($conn);
-
+        $tweet->setUserId($userId);
+        $tweet->setText($text);
+        $tweet->setCreationDate($creationDate);
+        $tweet->saveToDB($conn);
+    }
 }
 
 $allTweets = Tweet::loadAllTweets($conn);
