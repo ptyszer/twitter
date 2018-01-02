@@ -8,15 +8,18 @@ if (!isset($_SESSION['user'])) {
     header("Location: web/login.php");
 }
 
+$loggedInUser = User::loadUserById($conn, $_SESSION['user']);
+$userName = $loggedInUser->getUsername();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $user_id = $_SESSION['user'];
+    $userId = $_SESSION['user'];
     $text = $_POST['text'];
     $creationDate = date('Y-m-d H:i:s', time());
 
     $tweet = new Tweet();
 
-    $tweet->setUserId($user_id);
+    $tweet->setUserId($userId);
     $tweet->setText($text);
     $tweet->setCreationDate($creationDate);
     $tweet->saveToDB($conn);
@@ -30,16 +33,20 @@ $allTweets = Tweet::loadAllTweets($conn);
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <link rel="stylesheet" type="text/css" href="src/style.css">
     <meta charset="UTF-8">
     <title>Strona główna</title>
 </head>
 <body>
 <div class="container">
-    <h><a href="index.php">Strona główna</a></h>
-    <br>
-    <br><a href='web/login.php?action=logout'>Wyloguj się</a><br>
-    <br>
+    <div class="top-bar">
+        <div class="top-div"><a href="index.php">Strona główna</a></div>
+        <div class="top-div"><a href='web/messages.php'>Wiadomości</a></div>
+        <div class="top-div"><?php echo "<a href=\"web/user_page.php?user_name=$userName\">$userName</a>" ?></div>
+        <div class="top-div"><a href='web/login.php?action=logout'>Wyloguj się</a></div>
+        <div style="clear: both"></div>
+    </div>
 
     <div class="content">
         <div class="tweet-form">
@@ -54,10 +61,17 @@ $allTweets = Tweet::loadAllTweets($conn);
         <?php
         foreach ($allTweets as $t) {
             $userId = $t->getUserId();
-            $user = User::loadUserById($conn, $userId);
+            $tweetId = $t->getId();
+            $creationDate = $t->getCreationDate();
+            $text = $t->getText();
+            $tweetAuthor = User::loadUserById($conn, $userId);
+            $authorName = $tweetAuthor->getUsername();
             echo "<div class='tweet'>";
-            echo $user->getUsername() . " - " . $t->getCreationDate() . "<br>";
-            echo $t->getText() . "<br>";
+            echo "<a href='web/tweet_page.php?id=$tweetId' class='tweet-link'>";
+            echo "<object><a href='web/user_page.php?user_name=$authorName'>$authorName</a></object>";
+            echo " - $creationDate<br>";
+            echo "$text<br>";
+            echo "</a>";
             echo "</div>";
         }
         ?>

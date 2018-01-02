@@ -36,6 +36,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 
     <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="../src/style.css">
         <meta charset="UTF-8">
         <title>Logowanie</title>
     </head>
