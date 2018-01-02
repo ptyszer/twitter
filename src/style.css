@@ -1,7 +1,8 @@
-body{
+body {
     width: 100%;
     padding: 0;
 }
+
 .container {
     background: lightgray;
     width: 100%;
@@ -31,6 +32,10 @@ body{
     padding: 10px 15px;
 }
 
+.comment-form {
+    padding: 10px 15px;
+}
+
 a.tweet-link {
     color: #000000;
     text-decoration: none;
@@ -49,4 +54,8 @@ a {
 .top-div {
     float: left;
     padding: 15px;
+}
+
+.single-tweet {
+    font-size: 1.4em;
 }
