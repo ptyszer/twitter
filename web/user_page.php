@@ -2,6 +2,7 @@
 require_once '../src/connection.php';
 require_once '../src/User.php';
 require_once '../src/Tweet.php';
+require_once '../src/Comment.php';
 session_start();
 
 if (!isset($_SESSION['user'])) {
@@ -45,11 +46,15 @@ if ('GET' === $_SERVER['REQUEST_METHOD']) {
                 $tweetId = $t->getId();
                 $creationDate = $t->getCreationDate();
                 $text = $t->getText();
+                $comments = Comment::loadAllCommentsByPostId($conn, $tweetId);
                 echo "<div class='tweet'>";
                 echo "<a href='tweet_page.php?id=$tweetId' class='tweet-link'>";
                 echo "<object><a href='user_page.php?user_name=$username'>$username</a></object>";
                 echo " - $creationDate<br>";
                 echo "$text<br>";
+                echo "<span class='comment-line'>";
+                echo count($comments)>0 ? "Komentarze: " . count($comments) : "Brak komentarzy";
+                echo "</span>";
                 echo "</a>";
                 echo "</div>";
             }

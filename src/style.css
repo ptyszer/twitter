@@ -40,6 +40,8 @@ a.tweet-link {
     color: #000000;
     text-decoration: none;
     display: block;
+    width: 100%;
+    height: 100%;
 }
 
 a {
@@ -58,4 +60,9 @@ a {
 
 .single-tweet {
     font-size: 1.4em;
+}
+
+.comment-line {
+    font-size: 0.85em;
+    color: gray;
 }
