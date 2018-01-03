@@ -41,14 +41,14 @@ if ('GET' === $_SERVER['REQUEST_METHOD']) {
         <?php
         echo "<div class='user'>$username</div>";
         if ($userTweets){
-            echo "<div class='tweet'><b>Tweets</b></div>";
+            echo "<div class='box'><b>Tweets</b></div>";
             foreach ($userTweets as $t) {
                 $tweetId = $t->getId();
                 $creationDate = $t->getCreationDate();
                 $text = $t->getText();
                 $comments = Comment::loadAllCommentsByPostId($conn, $tweetId);
-                echo "<div class='tweet'>";
-                echo "<a href='tweet_page.php?id=$tweetId' class='tweet-link'>";
+                echo "<div>";
+                echo "<a href='tweet_page.php?id=$tweetId' class='box'>";
                 echo "<object><a href='user_page.php?user_name=$username'>$username</a></object>";
                 echo " - $creationDate<br>";
                 echo "$text<br>";
@@ -59,7 +59,7 @@ if ('GET' === $_SERVER['REQUEST_METHOD']) {
                 echo "</div>";
             }
         } else {
-            echo "<div class='tweet'>Brak wpisów...</div>";
+            echo "<div class='box'>Brak wpisów...</div>";
         }
 
         ?>

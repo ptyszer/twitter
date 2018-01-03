@@ -62,7 +62,7 @@ if (isset($_GET['id'])) {
     </div>
     <div class="content">
         <?php
-        echo "<div class='tweet'>";
+        echo "<div class='box'>";
         echo "<a href='user_page.php?user_name=$tweetAuthorName'>$tweetAuthorName</a> - $tweetCreationDate<br>";
         echo "<span class='single-tweet'>$tweetText</span><br>";
         echo "</a>";
@@ -79,13 +79,13 @@ if (isset($_GET['id'])) {
 
         <?php
         if ($comments) {
-            echo "<div class='tweet'><b>Comments</b></div>";
+            echo "<div class='box'><b>Comments</b></div>";
             foreach ($comments as $c) {
                 $id = $c->getId();
                 //$commentAuthorId = $c->getUserId();
                 $commentAuthor = User::loadUserById($conn, $c->getUserId());
                 $commentAuthorName = $commentAuthor->getUsername();
-                echo "<div class='tweet'>";
+                echo "<div class='box'>";
                 echo "<a href='user_page.php?user_name=$commentAuthorName'>$commentAuthorName</a>";
                 echo " - " . $c->getCreationDate() . "<br>";
                 echo $c->getText();
@@ -93,7 +93,7 @@ if (isset($_GET['id'])) {
                 echo "</div>";
             }
         } else {
-            echo "<div class='tweet'>Brak komentarzy...</div>";
+            echo "<div class='box'>Brak komentarzy...</div>";
         }
         ?>
     </div>
