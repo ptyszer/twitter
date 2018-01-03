@@ -48,7 +48,7 @@ if ('GET' === $_SERVER['REQUEST_METHOD']) {
                 $text = $t->getText();
                 $comments = Comment::loadAllCommentsByPostId($conn, $tweetId);
                 echo "<div>";
-                echo "<a href='tweet_page.php?id=$tweetId' class='box'>";
+                echo "<a href='tweet_page.php?id=$tweetId' class='box tweet'>";
                 echo "<object><a href='user_page.php?user_name=$username'>$username</a></object>";
                 echo " - $creationDate<br>";
                 echo "$text<br>";

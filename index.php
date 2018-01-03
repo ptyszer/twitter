@@ -68,7 +68,7 @@ $allTweets = Tweet::loadAllTweets($conn);
             $tweetAuthor = User::loadUserById($conn, $userId);
             $authorName = $tweetAuthor->getUsername();
             echo "<div>";
-            echo "<a href='web/tweet_page.php?id=$tweetId' class='box'>";
+            echo "<a href='web/tweet_page.php?id=$tweetId' class='box tweet'>";
             echo "<object><a href='web/user_page.php?user_name=$authorName'>$authorName</a></object>";
             echo " - $creationDate<br>";
             echo "$text<br>";
