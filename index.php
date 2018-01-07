@@ -9,7 +9,7 @@ if (!isset($_SESSION['user'])) {
 }
 
 $loggedInUser = User::loadUserById($conn, $_SESSION['user']);
-$userName = $loggedInUser->getUsername();
+$loggedUserName = $loggedInUser->getUsername();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -42,10 +42,11 @@ $allTweets = Tweet::loadAllTweets($conn);
 <body>
 <div class="container">
     <div class="top-bar">
-        <div class="top-div"><a href="index.php">Strona główna</a></div>
-        <div class="top-div"><a href='web/messages.php'>Wiadomości</a></div>
-        <div class="top-div"><?php echo "<a href=\"web/user_page.php?user_name=$userName\">$userName</a>" ?></div>
-        <div class="top-div"><a href='web/login.php?action=logout'>Wyloguj się</a></div>
+        <div class="top-div"><a href="index.php">Home</a></div>
+        <div class="top-div"><a href='web/messages.php'>Messages</a></div>
+        <div class="top-div"><?php echo "<a href=\"web/user_page.php?user_name=$loggedUserName\">$loggedUserName</a>" ?></div>
+        <div class="top-div"><a href="web/user_edit.php">Edit profile</a></div>
+        <div class="top-div"><a href='web/login.php?action=logout'>Log Out</a></div>
         <div style="clear: both"></div>
     </div>
 
@@ -68,7 +69,7 @@ $allTweets = Tweet::loadAllTweets($conn);
             $tweetAuthor = User::loadUserById($conn, $userId);
             $authorName = $tweetAuthor->getUsername();
             echo "<div>";
-            echo "<a href='web/tweet_page.php?id=$tweetId' class='box tweet'>";
+            echo "<a href='web/tweet_page.php?id=$tweetId' class='box hov line'>";
             echo "<object><a href='web/user_page.php?user_name=$authorName'>$authorName</a></object>";
             echo " - $creationDate<br>";
             echo "$text<br>";

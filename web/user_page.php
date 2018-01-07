@@ -30,39 +30,42 @@ if ('GET' === $_SERVER['REQUEST_METHOD']) {
         </head>
         <body>
         <div class="container">
-            <div class="top-bar">
-                <div class="top-div"><a href="../index.php">Strona główna</a></div>
-                <div class="top-div"><a href='messages.php'>Wiadomości</a></div>
-                <div class="top-div"><?php echo "<a href=\"user_page.php?user_name=$loggedUserName\">$loggedUserName</a>" ?></div>
-                <div class="top-div"><a href='login.php?action=logout'>Wyloguj się</a></div>
-                <div style="clear: both"></div>
-            </div>
-            <div class="content">
-        <?php
-        echo "<div class='user'>$username</div>";
-        if ($userTweets){
-            echo "<div class='box'><b>Tweets</b></div>";
-            foreach ($userTweets as $t) {
-                $tweetId = $t->getId();
-                $creationDate = $t->getCreationDate();
-                $text = $t->getText();
-                $comments = Comment::loadAllCommentsByPostId($conn, $tweetId);
-                echo "<div>";
-                echo "<a href='tweet_page.php?id=$tweetId' class='box tweet'>";
-                echo "<object><a href='user_page.php?user_name=$username'>$username</a></object>";
-                echo " - $creationDate<br>";
-                echo "$text<br>";
-                echo "<span class='comment-line'>";
-                echo count($comments)>0 ? "Komentarze: " . count($comments) : "Brak komentarzy";
-                echo "</span>";
-                echo "</a>";
-                echo "</div>";
-            }
-        } else {
-            echo "<div class='box'>Brak wpisów...</div>";
-        }
+            <?php include ('../src/top_bar.php'); ?>
 
-        ?>
+            <div class="content">
+                <?php
+                if ($_SESSION['user'] != $userId){
+                    echo "<div class='user'>$username</div>";
+                    echo "<div class='box'> 
+                      <form method='get' action='create_message.php'>
+                      <button type='submit' name='id' value='$userId'>Send message</button>
+                      </form>
+                      </div>";
+                }
+
+                if ($userTweets) {
+                    echo "<div class='box line'><b>Tweets</b></div>";
+                    foreach ($userTweets as $t) {
+                        $tweetId = $t->getId();
+                        $creationDate = $t->getCreationDate();
+                        $text = $t->getText();
+                        $comments = Comment::loadAllCommentsByPostId($conn, $tweetId);
+                        echo "<div>";
+                        echo "<a href='tweet_page.php?id=$tweetId' class='box hov line'>";
+                        echo "<object><a href='user_page.php?user_name=$username'>$username</a></object>";
+                        echo " - $creationDate<br>";
+                        echo "$text<br>";
+                        echo "<span class='comment-line'>";
+                        echo count($comments) > 0 ? "Comments: " . count($comments) : "No comments";
+                        echo "</span>";
+                        echo "</a>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "<div class='box'>Brak wpisów...</div>";
+                }
+
+                ?>
             </div>
         </div>
         </body>

@@ -41,7 +41,7 @@ if (isset($_GET['id'])) {
 
     $tweetAuthor = User::loadUserById($conn, $tweetUserId);
     $tweetAuthorName = $tweetAuthor->getUsername();
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -53,13 +53,8 @@ if (isset($_GET['id'])) {
 </head>
 <body>
 <div class="container">
-    <div class="top-bar">
-        <div class="top-div"><a href="../index.php">Strona główna</a></div>
-        <div class="top-div"><a href='messages.php'>Wiadomości</a></div>
-        <div class="top-div"><?php echo "<a href=\"user_page.php?user_name=$loggedUserName\">$loggedUserName</a>" ?></div>
-        <div class="top-div"><a href='login.php?action=logout'>Wyloguj się</a></div>
-        <div style="clear: both"></div>
-    </div>
+    <?php include ('../src/top_bar.php'); ?>
+
     <div class="content">
         <?php
         echo "<div class='box'>";
@@ -79,13 +74,13 @@ if (isset($_GET['id'])) {
 
         <?php
         if ($comments) {
-            echo "<div class='box'><b>Comments</b></div>";
+            echo "<div class='box line'><b>Comments</b></div>";
             foreach ($comments as $c) {
                 $id = $c->getId();
                 //$commentAuthorId = $c->getUserId();
                 $commentAuthor = User::loadUserById($conn, $c->getUserId());
                 $commentAuthorName = $commentAuthor->getUsername();
-                echo "<div class='box'>";
+                echo "<div class='box line'>";
                 echo "<a href='user_page.php?user_name=$commentAuthorName'>$commentAuthorName</a>";
                 echo " - " . $c->getCreationDate() . "<br>";
                 echo $c->getText();
@@ -100,3 +95,7 @@ if (isset($_GET['id'])) {
 </div>
 </body>
 </html>
+    <?php
+} else {
+    echo "Brak danych do wyświetlenia";
+}
