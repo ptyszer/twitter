@@ -6,13 +6,10 @@ session_start();
 
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
     if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
 
-        $username = ctype_space($username) || empty($username) ? null : trim($username);
-        $email = ctype_space($email) || empty($email) ? null : trim($email);
-        $password = ctype_space($password) || empty($password) ? null : trim($password);
+        $username = ctype_space($_POST['username']) || empty($_POST['username']) ? null : trim($_POST['username']);
+        $email = ctype_space($_POST['email']) || empty($_POST['email']) ? null : trim($_POST['email']);
+        $password = ctype_space($_POST['password']) || empty($_POST['password']) ? null : trim($_POST['password']);
 
         if (!$username || !$email || !$password) {
             echo '<p>Błędne dane</p>';
