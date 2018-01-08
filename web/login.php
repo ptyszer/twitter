@@ -17,7 +17,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
         $user = User::loadUserByEmail($conn, $email);
 
         if (!$user) {
-            echo '<p>Zły e-mail lub hasło</p>';
+            echo '<p>Wrong email or password</p>';
             exit;
         }
 
@@ -25,7 +25,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
             $_SESSION['user'] = $user->getId();
             header("Location: ../index.php");
         } else {
-            echo '<p>Zły e-mail lub hasło</p>';
+            echo '<p>Wrong email or password</p>';
             exit;
         }
     }

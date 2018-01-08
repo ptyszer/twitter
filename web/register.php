@@ -12,14 +12,14 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
         $password = ctype_space($_POST['password']) || empty($_POST['password']) ? null : trim($_POST['password']);
 
         if (!$username || !$email || !$password) {
-            echo '<p>Błędne dane</p>';
+            echo '<p>Incorrect data</p>';
             exit;
         }
 
         $stmt = $conn->prepare('SELECT * FROM Users WHERE email=:email');
         $result = $stmt->execute(['email' => $email]);
         if ($result === true && $stmt->rowCount() > 0) {
-            echo "<p>Podany adres e-mail jest już zajęty</p>";
+            echo "<p>Email has already been taken</p>";
             exit;
         }
 
