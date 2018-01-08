@@ -23,11 +23,13 @@ body {
 }
 
 .box {
-    border-bottom: 1px solid lightgray;
     color: #000000;
-    text-decoration: none;
     display: block;
     padding: 10px 15px;
+}
+
+.line {
+    border-bottom: 1px solid lightgray;
 }
 
 .tweet-form {
@@ -39,14 +41,15 @@ body {
     padding: 10px 15px;
 }
 
-a.tweet-link {
-    color: #000000;
+a {
     text-decoration: none;
-    display: block;
-    padding: 10px 15px;
 }
 
-a {
+a:hover {
+    text-decoration: underline;
+}
+
+a.box{
     text-decoration: none;
 }
 
@@ -69,6 +72,15 @@ a {
     color: gray;
 }
 
-.tweet:hover{
+.hov:hover {
     background-color: #eeeeee;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.message {
+    padding: 20px 45px;
+    font-size: 1.2em;
 }

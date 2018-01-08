@@ -37,7 +37,7 @@ $allTweets = Tweet::loadAllTweets($conn);
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <link rel="stylesheet" type="text/css" href="src/style.css">
     <meta charset="UTF-8">
-    <title>Strona główna</title>
+    <title>Home</title>
 </head>
 <body>
 <div class="container">
