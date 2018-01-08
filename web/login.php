@@ -18,6 +18,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 
         if (!$user) {
             echo '<p>Wrong email or password</p>';
+            echo "<a href='login.php'><< Back</a>";
             exit;
         }
 
@@ -26,6 +27,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
             header("Location: ../index.php");
         } else {
             echo '<p>Wrong email or password</p>';
+            echo "<a href='login.php'><< Back</a>";
             exit;
         }
     }

@@ -13,6 +13,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 
         if (!$username || !$email || !$password) {
             echo '<p>Incorrect data</p>';
+            echo "<a href='register.php'><< Back</a>";
             exit;
         }
 
@@ -20,6 +21,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
         $result = $stmt->execute(['email' => $email]);
         if ($result === true && $stmt->rowCount() > 0) {
             echo "<p>Email has already been taken</p>";
+            echo "<a href='register.php'><< Back</a>";
             exit;
         }
 
