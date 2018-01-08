@@ -7,7 +7,7 @@ require_once '../src/Message.php';
 session_start();
 
 if (!isset($_SESSION['user'])) {
-    header("Location: web/login.php");
+    header("Location: login.php");
 }
 
 $loggedInUser = User::loadUserById($conn, $_SESSION['user']);
