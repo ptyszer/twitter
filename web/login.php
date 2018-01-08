@@ -33,31 +33,37 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     ?>
 
     <!DOCTYPE html>
-
-    <html>
+    <html lang="en">
     <head>
         <link rel="stylesheet" type="text/css" href="../src/style.css">
         <meta charset="UTF-8">
-        <title>Logowanie</title>
+        <title>Login</title>
     </head>
     <body>
-    Zaloguj się:
-    <form method="POST" action="">
-        <p>
-            <label>
-                E-mail: <input name="email" type="email">
-            </label>
-        </p>
-        <p>
-            <label>
-                Hasło: <input name="password" type="password">
-            </label>
-        </p>
-        <p>
-            <input type="submit">
-        </p>
-    </form>
-    <a href="register.php">...lub załóż nowe konto</a>
+    <div class="container">
+        <div class="content">
+            <h1>Welcome to Twitter</h1>
+            <div class="center-box">
+                <p>Login:</p>
+                <form method="POST" action="">
+                    <p>
+                        <label>
+                            E-mail: <input name="email" type="email">
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            Password: <input name="password" type="password">
+                        </label>
+                    </p>
+                    <p>
+                        <input type="submit" value="Login">
+                    </p>
+                </form>
+                <a href="register.php">Create new account</a>
+            </div>
+        </div>
+    </div>
     </body>
     </html>
 

@@ -37,18 +37,29 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 } else {
     ?>
     <!DOCTYPE html>
-    <html>
+    <html lang="en">
     <head>
+        <link rel="stylesheet" type="text/css" href="../src/style.css">
         <meta charset="UTF-8">
-        <title>Rejestracja</title>
+        <title>Create account</title>
     </head>
     <body>
-    <form method="POST" action="">
-        <p><label>Login: </label><input name="username" type="text"></label></p>
-        <p><label>Email: <input name="email" type="email"></label></p>
-        <p><label>Hasło: <input name="password" type="password"></label></p>
-        <p><label>Register: <input type="submit" value="Register"></label></p>
-    </form>
+    <div class="container">
+        <div class="content">
+            <h1>Welcome to Twitter</h1>
+            <div class="center-box">
+                <p>Create account:</p>
+                <form method="POST" action="">
+                    <p><label>Username: </label><input name="username" type="text"></label></p>
+                    <p><label>Email: <input name="email" type="email"></label></p>
+                    <p><label>Password: <input name="password" type="password"></label></p>
+                    <p><label><input type="submit" value="Create account"></label></p>
+                </form>
+                <a href="login.php">Login with existing account</a>
+            </div>
+        </div>
+    </div>
+
     </body>
     </html>
 

@@ -77,7 +77,6 @@ if (isset($_GET['id'])) {
             echo "<div class='box line'><b>Comments</b></div>";
             foreach ($comments as $c) {
                 $id = $c->getId();
-                //$commentAuthorId = $c->getUserId();
                 $commentAuthor = User::loadUserById($conn, $c->getUserId());
                 $commentAuthorName = $commentAuthor->getUsername();
                 echo "<div class='box line'>";
@@ -88,7 +87,7 @@ if (isset($_GET['id'])) {
                 echo "</div>";
             }
         } else {
-            echo "<div class='box'>Brak komentarzy...</div>";
+            echo "<div class='box'>No comments...</div>";
         }
         ?>
     </div>
@@ -97,5 +96,5 @@ if (isset($_GET['id'])) {
 </html>
     <?php
 } else {
-    echo "Brak danych do wyświetlenia";
+    echo "No data to display";
 }

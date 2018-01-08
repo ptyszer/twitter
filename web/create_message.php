@@ -56,8 +56,8 @@ if (isset($_GET['id'])) {
         <?php include('../src/top_bar.php'); ?>
 
         <div class="content">
-            <div class="box"><?php echo $info ?></div>
-            <div class="box">Message to <?php echo $receiverName ?>:</div>
+            <div class="box"><?= $info ?></div>
+            <div class="box">Message to <?= $receiverName ?>:</div>
             <div class="box">
                 <form action="" method="post" role="form">
 
@@ -74,5 +74,5 @@ if (isset($_GET['id'])) {
     </html>
     <?php
 } else {
-    echo "Brak danych do wyświetlenia";
+    echo "No data to display";
 }

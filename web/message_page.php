@@ -56,5 +56,5 @@ if (isset($_GET['id'])) {
     </html>
     <?php
 } else {
-    echo "Brak danych do wyświetlenia";
+    echo "No data to display";
 }

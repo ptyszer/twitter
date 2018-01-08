@@ -37,14 +37,14 @@ $allTweets = Tweet::loadAllTweets($conn);
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <link rel="stylesheet" type="text/css" href="src/style.css">
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Twitter</title>
 </head>
 <body>
 <div class="container">
     <div class="top-bar">
         <div class="top-div"><a href="index.php">Home</a></div>
         <div class="top-div"><a href='web/messages.php'>Messages</a></div>
-        <div class="top-div"><?php echo "<a href=\"web/user_page.php?user_name=$loggedUserName\">$loggedUserName</a>" ?></div>
+        <div class="top-div"><a href="web/user_page.php?user_name=<?=$loggedUserName?>"><?=$loggedUserName?></a></div>
         <div class="top-div"><a href="web/user_edit.php">Edit profile</a></div>
         <div class="top-div"><a href='web/login.php?action=logout'>Log Out</a></div>
         <div style="clear: both"></div>

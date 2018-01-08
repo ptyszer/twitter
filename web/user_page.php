@@ -26,7 +26,7 @@ if ('GET' === $_SERVER['REQUEST_METHOD']) {
         <head>
             <link rel="stylesheet" type="text/css" href="../src/style.css">
             <meta charset="UTF-8">
-            <title><?php echo $username ?></title>
+            <title><?= $username ?></title>
         </head>
         <body>
         <div class="container">
@@ -62,7 +62,7 @@ if ('GET' === $_SERVER['REQUEST_METHOD']) {
                         echo "</div>";
                     }
                 } else {
-                    echo "<div class='box'>Brak wpisów...</div>";
+                    echo "<div class='box'>No tweets...</div>";
                 }
 
                 ?>
@@ -72,6 +72,6 @@ if ('GET' === $_SERVER['REQUEST_METHOD']) {
         </html>
         <?php
     } else {
-        echo "Brak danych do wyświetlenia";
+        echo "No data to display";
     }
 }
