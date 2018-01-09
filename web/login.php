@@ -5,15 +5,16 @@ require_once '../src/User.php';
 
 session_start();
 
-if (isset($_SESSION['user'])) {
-    header("Location: ../index.php");
-}
-
 if ('GET' === $_SERVER['REQUEST_METHOD']) {
     if (!empty($_GET) and $_GET['action'] == 'logout') {
         unset($_SESSION['user']);
     }
 }
+
+if (isset($_SESSION['user'])) {
+    header("Location: ../index.php");
+}
+
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
     if (isset($_POST['email']) && isset($_POST['password'])) {
         $email = $_POST['email'];

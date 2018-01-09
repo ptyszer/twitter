@@ -66,7 +66,7 @@ if (isset($_GET['id'])) {
 
         <div class="comment-form">
             <form action="" method="post" role="form">
-                <textarea cols="60" rows="2" id="text" name="text" placeholder="Write a comment..."></textarea>
+                <textarea cols="60" rows="3" id="text" name="text" placeholder="Write a comment..."></textarea>
                 <br>
                 <input type="submit" value="Comment">
             </form>
