@@ -16,16 +16,16 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
         $password = ctype_space($_POST['password']) || empty($_POST['password']) ? null : trim($_POST['password']);
 
         if (!$username || !$email || !$password) {
-            echo '<p>Incorrect data</p>';
-            echo "<a href='register.php'><< Back</a>";
+            $_SESSION['error'] = 'Incorrect data';
+            header("Location: register.php");
             exit;
         }
 
         $stmt = $conn->prepare('SELECT * FROM Users WHERE email=:email');
         $result = $stmt->execute(['email' => $email]);
         if ($result === true && $stmt->rowCount() > 0) {
-            echo "<p>Email has already been taken</p>";
-            echo "<a href='register.php'><< Back</a>";
+            $_SESSION['error'] = 'Email has already been taken';
+            header("Location: register.php");
             exit;
         }
 
@@ -59,6 +59,12 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
                     <p><label>Username: </label><input name="username" type="text"></label></p>
                     <p><label>Email: <input name="email" type="email"></label></p>
                     <p><label>Password: <input name="password" type="password"></label></p>
+                    <p class="error">
+                        <?php
+                        echo isset($_SESSION['error']) ? $_SESSION['error'] : '';
+                        unset($_SESSION['error']);
+                        ?>
+                    </p>
                     <p><label><input type="submit" value="Create account"></label></p>
                 </form>
                 <a href="login.php">Login with existing account</a>

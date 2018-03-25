@@ -23,17 +23,19 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
         $user = User::loadUserByEmail($conn, $email);
 
         if (!$user) {
-            echo '<p>Wrong email or password</p>';
-            echo "<a href='login.php'><< Back</a>";
+            $_SESSION['error'] = 'Wrong email or password';
+            header("Location: login.php");
             exit;
         }
+
+
 
         if (password_verify($password, $user->getPassword())) {
             $_SESSION['user'] = $user->getId();
             header("Location: ../index.php");
         } else {
-            echo '<p>Wrong email or password</p>';
-            echo "<a href='login.php'><< Back</a>";
+            $_SESSION['error'] = 'Wrong email or password';
+            header("Location: login.php");
             exit;
         }
     }
@@ -63,6 +65,12 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
                         <label>
                             Password: <input name="password" type="password">
                         </label>
+                    </p>
+                    <p class="error">
+                        <?php
+                            echo isset($_SESSION['error']) ? $_SESSION['error'] : '';
+                            unset($_SESSION['error']);
+                        ?>
                     </p>
                     <p>
                         <input type="submit" value="Login">
